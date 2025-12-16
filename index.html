@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OO교회 안내 및 환영 페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ------------------ CSS 스타일 시작 ------------------ */
+        :root {
+            --primary-color: #00796B; /* 포인트 색상: 청록색 */
+            --secondary-color: #FFB300; /* 강조 색상: 노란색 */
+            --background-light: #f9f9f9; /* 연한 배경색 */
+            --text-dark: #333;
+            --font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ------------------ 헤더 스타일 ------------------ */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #004d40 100%);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        /* 💡 로고 스타일 */
+        .church-logo {
+            width: 50px; 
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 15px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            padding: 5px;
+        }
+        
+        .header-link {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .main-verse {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 1.1em;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* ------------------ 공통 섹션 스타일 ------------------ */
+        
+        .section {
+            padding: 60px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .new-visitor-guide {
+            background-color: #e0f2f1;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .new-visitor-guide h2 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .new-visitor-guide p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .guide-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .guide-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 250px;
+            max-width: 300px;
+            border-top: 3px solid var(--secondary-color);
+        }
+        
+        .guide-item i {
+            color: var(--secondary-color);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /* 주소/안내 문구 스타일 분리 */
+        .guide-item .address-text {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+        .guide-item .guide-text {
+            font-size: 0.95em;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .guide-button {
+            display: inline-block;
+            background-color: #D32F2F;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .guide-button:hover {
+            background-color: #9a1a1a;
+        }
+        
+        /* 비전 섹션 스타일 */
+        .vision-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .vision-box {
+            flex: 1 1 280px;
+            padding: 25px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .vision-box:hover {
+            background-color: var(--background-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 121, 107, 0.1);
+        }
+
+        .vision-box i {
+            font-size: 3em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .vision-box h3 {
+            color: var(--primary-color);
+            margin-top: 10px;
+        }
+        
+        /* 예배 시간표 스타일 */
+        .service-time {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .time-box {
+            background-color: var(--background-light);
+            padding: 30px;
+            margin: 10px;
+            border-radius: 8px;
+            flex: 1 1 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .time-box .time {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 5px 0 10px 0;
+        }
+        
+        /* 공지사항 스타일 */
+        .notice-list {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .notice-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        /* ------------------ 모바일 반응형 설정 ------------------ */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            .church-logo {
+                width: 40px; 
+                height: 40px;
+                margin-right: 10px;
+            }
+            .new-visitor-guide h2 {
+                font-size: 2em;
+            }
+            .guide-box {
+                flex-direction: column;
+            }
+            .guide-item {
+                max-width: 100%;
+            }
+            .service-time {
+                flex-direction: column;
+            }
+            .time-box {
+                flex: 1 1 100%;
+                margin: 10px 0;
+            }
+            .vision-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="연결할_가정연합_홈페이지_URL" target="_blank" class="header-link">
+                <h1>
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.ktQjZetj97W-Yhv5feaSuwHaHa?pid=Api&h=220&P=0" alt="가정연합 마크" class="church-logo">
+                    [OO 교회]
+                </h1>
+            </a>
+            <p>환영합니다. 가정을 사랑하는, 국가를 사랑하는 공동체</p>
+            <p class="main-verse">통일교인은 자기를 위해서 사는 사람이 아니라 남들을 위해서 사는 사람이다. (85-36)</p>
+        </div>
+    </header>
+
+    <section id="welcome-new" class="new-visitor-guide">
+        <div class="container">
+            <h2><i class="fas fa-handshake"></i> 새로 오신 분을 환영합니다!</h2>
+            <p>처음 방문하셨다면, 안내 데스크에 잠시 들러주시거나 아래 방법으로 등록해 주시면 연락드리겠습니다.</p>
+            <div class="guide-box">
+                <div class="guide-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>전화/문자 문의</h3>
+                    <p class="address-text">궁금한 점이 있거나 도움이 필요하면 언제든지 전화하세요.</p>
+                    <a href="tel:02-1234-5678" class="guide-button"><i class="fas fa-phone"></i> 새식구 문의 (02-1234-5678)</a>
+                </div>
+                <div class="guide-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>교회 주소 및 안내</h3> 
+                    <p id="church-address-display" class="address-text">여기에 주소가 표시됩니다.</p> 
+                    <p id="on-site-guide-display" class="guide-text">여기에 현장 안내 문구가 표시됩니다.</p> 
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        
+        <section id="vision" class="section">
+            <h2 class="section-title">교회 비전 (VISION)</h2>
+            <div class="vision-container">
+                <div class="vision-box">
+                    <i class="fas fa-hands-praying"></i> <h3>예배가 살아있는 공동체</h3>
+                    <p>하늘부모님을 경외하며 진리와 성령으로 예배하는 기쁨이 넘치는 교회</p>
+                </div>
+                <div class="vision-box">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>사랑으로 섬기는 공동체</h3>
+                    <p>서로를 깊이 사랑하며 지역 사회와 이웃을 섬기는 따뜻한 교회</p>
+                </div>
+                <div class="vision-box">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>말씀으로 성장하는 공동체</h3>
+                    <p>말씀을 배우고 실천하며 믿음 안에서 성숙해져 가는 자녀들의 교회</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="service" class="section" style="background-color: var(--background-light);">
+            <h2 class="section-title">주일 예배 시간 안내 <i class="far fa-clock"></i></h2>
+            <div class="service-time">
+                <div class="time-box">
+                    <h3>1부 예배 (경건)</h3>
+                    <div class="time">오전 8:00</div>
+                    <p>본당 / 설교: 담임 목사</p>
+                </div>
+                <div class="time-box">
+                    <h3>2부 예배 (공동체)</h3>
+                    <div class="time">오전 10:30</div>
+                    <p>본당 / 설교: 담임 목사</p>
+                </div>
+                <div class="time-box">
+                    <h3>청년 예배</h3>
+                    <div class="time">오후 2:00</div>
+                    <p>비전센터 3층 / 설교: 청년부 담당</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="notice" class="section">
+            <h2 class="section-title">이번 주 주요 공지 <i class="fas fa-bullhorn"></i></h2>
+            <ul class="notice-list">
+                <li class="notice-item">
+                    <strong>12/11(수) 특별 새벽 기도회 시작</strong>
+                    <span>매일 새벽 5시 30분, 3층 비전센터</span>
+                </li>
+                <li class="notice-item">
+                    <strong>겨울 수련회 참가 등록 마감 임박!</strong>
+                    <span>12월 15일(일)까지 등록, 로비 데스크 또는 온라인 접수</span>
+                </li>
+                <li class="notice-item">
+                    <strong>새 신자 환영회 및 교육 안내</strong>
+                    <span>오늘 오후 12시, 친교실에서 5주 과정 시작합니다.</span>
+                </li>
+            </ul>
+        </section>
+
+        </div>
+    
+    <script>
+/* ------------------ 구글 스프레드시트 연동 코드 (최종 수정됨) 시작 ------------------ */
+
+// 💡 중요: 아래 'YOUR_SHEET_ID'를 스프레드시트 URL에서 복사하여 교체하세요.
+// URL 예시: https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit#gid=0
+const SHEET_ID = '1ylkHFx89o9634eb3ghNyYpP8Dlwy2nQfqsy8TXupi_8'; // 실제 ID로 교체 필요
+const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=0`;
+
+async function fetchAndRenderData() {
+    try {
+        const response = await fetch(SHEET_URL);
+        const text = await response.text();
+        
+        // JSON 응답에서 데이터 추출 및 파싱
+        const jsonText = text.substring(text.indexOf('(') + 1, text.lastIndexOf(')'));
+        const json = JSON.parse(jsonText);
+        
+        const data = json.table.rows[0].c;
+        const headers = json.table.cols.map(col => col.label);
+        
+        const churchData = {};
+        headers.forEach((header, index) => {
+            churchData[header] = data[index] && data[index].v ? data[index].v : ''; 
+        });
+
+        // ----------------- 🎯 HTML 요소에 데이터 반영 -----------------
+        
+        // 1. 교회 이름 반영
+        document.querySelector('header h1').innerHTML = 
+            `<img src="https://tse3.mm.bing.net/th/id/OIP.ktQjZetj97W-Yhv5feaSuwHaHa?pid=Api&h=220&P=0" alt="가정연합 마크" class="church-logo"> ${churchData.church_name}`;
+
+        // 2. 전화/문자 문의 반영
+        document.querySelector('.guide-item a[href^="tel:"]').href = churchData.phone_link;
+        document.querySelector('.guide-item a[href^="tel:"]').innerHTML = `<i class="fas fa-phone"></i> 새식구 문의 (${churchData.phone_num})`;
+        
+        // 3. 교회 주소 및 현장 안내 반영
+        document.querySelector('#church-address-display').textContent = churchData.church_address || '주소 정보가 없습니다.';
+        document.querySelector('#on-site-guide-display').textContent = churchData.on_site_guide || '현장 안내 문구가 없습니다.';
+
+
+        // 4. 주일 예배 시간 반영 (3부 예배는 선택 사항: worship_time_3이 비어있으면 숨김)
+        const worshipServices = [
+            { dataKey: 'worship_time_1', title: '1부 예배 (경건)', detailDefault: '본당 / 설교: 담임 목사' },
+            { dataKey: 'worship_time_2', title: '2부 예배 (공동체)', detailDefault: '본당 / 설교: 담임 목사' },
+            { dataKey: 'worship_time_3', title: '청년 예배', detailDefault: '비전센터 3층 / 설교: 청년부 담당' }
+        ];
+
+        const timeBoxes = document.querySelectorAll('.service-time .time-box');
+        
+        timeBoxes.forEach((box, index) => {
+            const service = worshipServices[index];
+            const timeData = churchData[service.dataKey];
+            
+            if (timeData) {
+                // 데이터가 있으면 표시 및 업데이트
+                box.style.display = 'block'; 
+                
+                const parts = timeData.split(' ');
+                const timeText = parts[0] || ''; 
+                const detailText = parts.slice(1).join(' ') || '';
+
+                box.querySelector('h3').textContent = service.title;
+                box.querySelector('.time').textContent = timeText;
+                
+                const sermonDetail = service.detailDefault.split('/ 설교: ')[1];
+                box.querySelector('p').textContent = detailText ? `${detailText} / 설교: ${sermonDetail}` : service.detailDefault;
+                
+            } else {
+                // 데이터가 없으면 숨김 처리 (주로 3부 예배에 적용)
+                if (index === 2) { // 3번째 time-box만 숨김 처리
+                    box.style.display = 'none';
+                }
+            }
+        });
+
+
+        // 5. 주요 공지 반영
+        const noticeList = document.querySelector('.notice-list');
+        noticeList.innerHTML = ''; 
+
+        for (let i = 1; i <= 3; i++) {
+            const titleKey = `notice_${i}`;
+            const detailKey = `notice_detail_${i}`;
+
+            if (churchData[titleKey] && churchData[detailKey]) {
+                const li = document.createElement('li');
+                li.className = 'notice-item';
+                li.innerHTML = `
+                    <strong>${churchData[titleKey]}</strong>
+                    <span>${churchData[detailKey]}</span>
+                `;
+                noticeList.appendChild(li);
+            }
+        }
+
+
+    } catch (error) {
+        console.error("데이터를 불러오는 중 오류 발생:", error);
+    }
+}
+
+fetchAndRenderData();
+
+/* ------------------ 구글 스프레드시트 연동 코드 (최종 수정됨) 종료 ------------------ */
+    </script>
+
+</body>
+</html>
